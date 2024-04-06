@@ -6,7 +6,6 @@ namespace AC2_GestioDadesDemografiques
 {
     public class Comarca
     {
-        // No es pot fet un constructor ja que si no el CsvHelper peta
         [Index(0)]
         public int Any { get; set; }
 
