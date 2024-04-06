@@ -31,16 +31,16 @@ namespace AC2_GestioDadesDemografiques
             XDocument xmldoc = XDocument.Load(XMLHandler.PATH);
 
             var comarcas = from comarca in xmldoc.Descendants("Comarca")
+                           group comarca by comarca.Element("Nom").Value into g
                            select new
                            {
-                               Any = int.Parse(comarca.Element("Any").Value),
-                               NomComarca = comarca.Element("Nom").Value,
-                               ConsumDomesticMitja = double.Parse(comarca.Element("DomesticXarxa").Value) / double.Parse(comarca.Element("Poblacio").Value)
+                               NomComarca = g.Key,
+                               ConsumDomesticMitja = g.Average(x => double.Parse(x.Element("ConsumDomesticPerCapita").Value)),
                            };
 
             foreach (var comarca in comarcas)
             {
-                Console.WriteLine($"Any: {comarca.Any} - Nom comarca: {comarca.NomComarca} - Consum domèstic mitjà: {comarca.ConsumDomesticMitja:N2}");
+                Console.WriteLine($"Nom comarca: {comarca.NomComarca} - Consum domèstic mitjà: {comarca.ConsumDomesticMitja:N2}");
 
             }
         }
