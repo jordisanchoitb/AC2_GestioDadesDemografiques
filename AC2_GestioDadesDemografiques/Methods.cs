@@ -85,7 +85,7 @@ namespace AC2_GestioDadesDemografiques
             return comarcas;
         }
 
-        public static Comarca FiltrarComarcaPerNomOCodi(string nomOcodi)
+        public static List<Comarca> FiltrarComarcaPerNomOCodi(string nomOcodi)
         {
             XDocument xmldoc = XDocument.Load(XMLHandler.PATH);
 
@@ -101,7 +101,7 @@ namespace AC2_GestioDadesDemografiques
                                ActivitatsEconomiques = double.Parse(com.Element("ActivitatsEconomiques").Value),
                                Total = double.Parse(com.Element("Total").Value),
                                ConsumDomesticPerCapita = double.Parse(com.Element("ConsumDomesticPerCapita").Value)
-                           }).FirstOrDefault();
+                           }).ToList();
 
             return comarca;
 

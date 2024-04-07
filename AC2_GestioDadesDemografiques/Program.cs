@@ -56,7 +56,11 @@ namespace AC2_GestioDadesDemografiques
                         Console.Clear();
                         Console.WriteLine("Introdueix el nom o el codi de la comarca que vols buscar:");
                         string nomOcodi = Console.ReadLine();
-                        Console.WriteLine(Methods.FiltrarComarcaPerNomOCodi(nomOcodi));
+                        List<Comarca> comarcas = Methods.FiltrarComarcaPerNomOCodi(nomOcodi);
+                        foreach (var comarca in comarcas)
+                        {
+                            Console.WriteLine(comarca);
+                        }
                         Console.WriteLine("Prem una tecla per continuar...");
                         Console.ReadKey();
                         break;
